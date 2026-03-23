@@ -68,15 +68,15 @@ export const PageScanScene: React.FC = () => {
         style={{
           background: COLORS.bgCard,
           borderRadius: 16,
-          padding: '40px 48px',
-          width: 720,
+          padding: '56px 72px',
+          width: 960,
           boxShadow: '0 4px 32px rgba(144,33,166,0.12)',
           transform: `translateY(${cardY}px)`,
           fontFamily,
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 24 }}>
-          <span style={{ fontSize: 20, color: COLORS.textPrimary }}>Scan up to</span>
+          <span style={{ fontSize: 28, color: COLORS.textPrimary }}>Scan up to</span>
           <button
             style={{
               background: 'none',
@@ -88,7 +88,7 @@ export const PageScanScene: React.FC = () => {
               padding: 0,
             }}
           >
-            <span style={{ color: COLORS.purplePrimary, fontWeight: 700, fontSize: 22 }}>
+            <span style={{ color: COLORS.purplePrimary, fontWeight: 700, fontSize: 32 }}>
               {pageValue.toLocaleString()} pages
             </span>
             <Img
@@ -102,10 +102,10 @@ export const PageScanScene: React.FC = () => {
           <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
             <Img src={staticFile('up-stepper-button.svg')} style={{ width: 32, height: 32 }} />
             <Img src={staticFile('down-stepper-button.svg')} style={{ width: 32, height: 32 }} />
-            <span style={{ fontSize: 28, fontWeight: 700, color: COLORS.textPrimary }}>
+            <span style={{ fontSize: 40, fontWeight: 700, color: COLORS.textPrimary }}>
               {pageValue.toLocaleString()}
             </span>
-            <span style={{ fontSize: 20, color: COLORS.textMuted }}>pages</span>
+            <span style={{ fontSize: 30, color: COLORS.textMuted }}>pages</span>
           </div>
         </div>
 
@@ -116,7 +116,7 @@ export const PageScanScene: React.FC = () => {
                 src={staticFile('loading_spinner.svg')}
                 style={{ width: 24, height: 24 }}
               />
-              <span style={{ fontSize: 20, color: COLORS.purplePrimary, fontWeight: 600 }}>
+              <span style={{ fontSize: 30, color: COLORS.purplePrimary, fontWeight: 600 }}>
                 Scanning: Page {scannedPages} of 1,000
               </span>
             </div>
@@ -132,8 +132,8 @@ export const PageScanScene: React.FC = () => {
           background: COLORS.purplePrimary,
           color: '#fff',
           borderRadius: 40,
-          padding: '16px 40px',
-          fontSize: 28,
+          padding: '20px 52px',
+          fontSize: 36,
           fontWeight: 700,
           fontFamily,
           opacity: badgeOpacity,

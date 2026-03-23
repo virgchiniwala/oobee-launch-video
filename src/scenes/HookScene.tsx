@@ -38,11 +38,15 @@ export const HookScene: React.FC = () => {
     extrapolateRight: 'clamp',
   });
 
-  // Beat 2: purple wipe bar
+  // Purple wipe: grow 0→100% (frames 60–70), then slide off right (frames 70–80)
   const wipeWidth = interpolate(frame, [60, 70], [0, 100], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
     easing: (t) => 1 - Math.pow(1 - t, 3),
+  });
+  const wipeTranslateX = interpolate(frame, [70, 80], [0, 100], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
   });
 
   // Beat 2: "100" fades out as wipe passes
@@ -87,10 +91,10 @@ export const HookScene: React.FC = () => {
       {/* Giant number area */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: 60 }}>
         {/* Labels */}
-        <div style={{ position: 'absolute', opacity: labelBeforeOpacity, fontFamily, fontSize: 22, color: COLORS.textMuted, letterSpacing: 4, marginBottom: 16, textTransform: 'uppercase' }}>
+        <div style={{ position: 'absolute', opacity: labelBeforeOpacity, fontFamily, fontSize: 32, color: COLORS.textMuted, letterSpacing: 4, marginBottom: 16, textTransform: 'uppercase' }}>
           Beta — pages per scan
         </div>
-        <div style={{ position: 'absolute', opacity: labelAfterOpacity, fontFamily, fontSize: 22, color: COLORS.purplePrimary, letterSpacing: 4, marginBottom: 16, textTransform: 'uppercase', fontWeight: 700 }}>
+        <div style={{ position: 'absolute', opacity: labelAfterOpacity, fontFamily, fontSize: 32, color: COLORS.purplePrimary, letterSpacing: 4, marginBottom: 16, textTransform: 'uppercase', fontWeight: 700 }}>
           V1 — pages per scan
         </div>
 
@@ -98,7 +102,7 @@ export const HookScene: React.FC = () => {
         <div style={{ marginTop: 40 }}>
           {/* "100" exits during wipe */}
           <div style={{ opacity: hundredExitOpacity * hundredOpacity, transform: `scale(${hundredScale})`, position: 'absolute' }}>
-            <span style={{ fontFamily, fontSize: 200, fontWeight: 900, color: COLORS.textDisabled, letterSpacing: -8, lineHeight: 1 }}>
+            <span style={{ fontFamily, fontSize: 280, fontWeight: 900, color: COLORS.textDisabled, letterSpacing: -8, lineHeight: 1 }}>
               100
             </span>
           </div>
@@ -107,7 +111,7 @@ export const HookScene: React.FC = () => {
           <div style={{ opacity: thousandOpacity }}>
             <span style={{
               fontFamily,
-              fontSize: 200,
+              fontSize: 280,
               fontWeight: 900,
               color: COLORS.purplePrimary,
               letterSpacing: -8,
@@ -121,15 +125,15 @@ export const HookScene: React.FC = () => {
       </div>
 
       {/* Beat 3: Strike-through rows */}
-      <div style={{ position: 'absolute', bottom: 160, left: 200, display: 'flex', flexDirection: 'column', gap: 24 }}>
-        <Sequence from={120}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-            <StrikeThrough before="gov.sg only" after="Scan any domain" strikeStartFrame={0} afterStartFrame={14} fontSize={34} />
-            <Sequence from={40}>
-              <StrikeThrough before="7 days of reports" after="2 months of reports" strikeStartFrame={0} afterStartFrame={14} fontSize={34} />
+      <div style={{ position: 'absolute', bottom: 160, left: 200, display: 'flex', flexDirection: 'column', gap: 36 }}>
+        <Sequence from={120} layout="none">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 36 }}>
+            <StrikeThrough before="gov.sg only" after="Scan any domain" strikeStartFrame={0} afterStartFrame={14} fontSize={52} />
+            <Sequence from={40} layout="none">
+              <StrikeThrough before="7 days of reports" after="2 months of reports" strikeStartFrame={0} afterStartFrame={14} fontSize={52} />
             </Sequence>
-            <Sequence from={80}>
-              <StrikeThrough before="No custom flows" after="Post-login custom flows" strikeStartFrame={0} afterStartFrame={14} fontSize={34} />
+            <Sequence from={80} layout="none">
+              <StrikeThrough before="No custom flows" after="Post-login custom flows" strikeStartFrame={0} afterStartFrame={14} fontSize={52} />
             </Sequence>
           </div>
         </Sequence>
@@ -144,6 +148,7 @@ export const HookScene: React.FC = () => {
           height: '100%',
           width: `${wipeWidth}%`,
           background: COLORS.purplePrimary,
+          transform: `translateX(${wipeTranslateX}%)`,
         }} />
       </AbsoluteFill>
 

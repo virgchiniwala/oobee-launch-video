@@ -3,6 +3,7 @@ import React from 'react';
 import {
   AbsoluteFill,
   interpolate,
+  Sequence,
   spring,
   useCurrentFrame,
   useVideoConfig,
@@ -20,7 +21,7 @@ export const AnyDomainScene: React.FC = () => {
   const cardY = interpolate(
     spring({ frame, fps, config: { stiffness: 100, damping: 16 } }),
     [0, 1],
-    [80, 0]
+    [100, 0]
   );
 
   const charCount = Math.round(
@@ -32,56 +33,67 @@ export const AnyDomainScene: React.FC = () => {
   const displayedUrl = FULL_URL.slice(0, charCount);
   const showCursor = frame < 90;
 
-  const overlayOpacity = interpolate(frame, [140, 165], [0, 1], {
+  const overlayOpacity = interpolate(frame, [130, 160], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
 
   return (
     <AbsoluteFill
-      style={{ background: COLORS.bgApp, alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 48 }}
+      style={{
+        background: COLORS.bgApp,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        gap: 60,
+      }}
     >
+      {/* Scan URL card */}
       <div
         style={{
           background: COLORS.bgCard,
-          borderRadius: 16,
-          padding: '40px 48px',
-          width: 800,
-          boxShadow: '0 4px 32px rgba(144,33,166,0.12)',
+          borderRadius: 20,
+          padding: '56px 72px',
+          width: 1100,
+          boxShadow: '0 8px 48px rgba(144,33,166,0.12)',
           transform: `translateY(${cardY}px)`,
           fontFamily,
         }}
       >
-        <div style={{ fontSize: 18, color: COLORS.textMuted, marginBottom: 12 }}>
+        <div style={{ fontSize: 26, color: COLORS.textMuted, marginBottom: 16 }}>
           Website URL
         </div>
-
         <div
           style={{
             background: COLORS.bgApp,
-            borderRadius: 8,
-            padding: '14px 20px',
-            fontSize: 24,
+            borderRadius: 10,
+            padding: '18px 28px',
+            fontSize: 34,
             color: COLORS.purplePrimary,
-            marginBottom: 24,
-            minHeight: 56,
+            marginBottom: 32,
+            minHeight: 72,
+            fontWeight: 500,
           }}
         >
           {displayedUrl}
           {showCursor && <span style={{ opacity: frame % 30 < 15 ? 1 : 0 }}>|</span>}
         </div>
 
-        {frame >= 80 && <DomainTags />}
+        {/* Domain tags — wrapped in Sequence so frame resets to 0 */}
+        <Sequence from={80} layout="none">
+          <DomainTags />
+        </Sequence>
       </div>
 
+      {/* Overlay headline */}
       <div
         style={{
-          fontSize: 56,
+          fontSize: 80,
           fontWeight: 900,
           color: COLORS.purplePrimary,
           fontFamily,
           opacity: overlayOpacity,
-          letterSpacing: -1,
+          letterSpacing: -2,
         }}
       >
         Scan any domain.

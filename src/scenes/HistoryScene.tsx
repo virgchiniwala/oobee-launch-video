@@ -18,7 +18,7 @@ const CARDS = [
   { siteName: 'CPF Board', siteUrl: 'cpf.gov.sg', date: '22 Jan 2025' },
 ];
 
-const AnimatedCard: React.FC<{ card: typeof CARDS[0]; muted?: boolean }> = ({ card, muted }) => {
+const AnimatedCard: React.FC<{ card: typeof CARDS[0] }> = ({ card }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -31,7 +31,7 @@ const AnimatedCard: React.FC<{ card: typeof CARDS[0]; muted?: boolean }> = ({ ca
 
   return (
     <div style={{ transform: `translateY(${y}px)`, opacity }}>
-      <ScanCardMock {...card} muted={muted} />
+      <ScanCardMock {...card} />
     </div>
   );
 };
@@ -65,30 +65,37 @@ export const HistoryScene: React.FC = () => {
 
   return (
     <AbsoluteFill
-      style={{ background: COLORS.bgApp, padding: '80px 160px', flexDirection: 'column', gap: 0 }}
+      style={{
+        background: COLORS.bgApp,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        flexDirection: 'column',
+        paddingTop: 80,
+      }}
     >
       {/* Heading */}
       <div
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 16,
-          marginBottom: 32,
+          gap: 20,
+          marginBottom: 40,
           transform: `translateY(${headingY}px)`,
           opacity: headingOpacity,
           fontFamily,
+          width: 1200,
         }}
       >
-        <span style={{ fontSize: 36, fontWeight: 700, color: COLORS.textPrimary }}>
+        <span style={{ fontSize: 52, fontWeight: 700, color: COLORS.textPrimary }}>
           Scan Reports
         </span>
         <span
           style={{
             background: COLORS.badgeBg,
             color: COLORS.badgeText,
-            borderRadius: 8,
-            padding: '4px 12px',
-            fontSize: 18,
+            borderRadius: 10,
+            padding: '6px 16px',
+            fontSize: 26,
             fontWeight: 700,
           }}
         >
@@ -96,22 +103,22 @@ export const HistoryScene: React.FC = () => {
         </span>
       </div>
 
-      {/* Card list */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginBottom: 48 }}>
+      {/* Card list — 1200px wide, stacked vertically */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 20, width: 1200, marginBottom: 48 }}>
         {CARDS.map((card, i) => (
-          frame >= 20 + i * 20 && (
-            <Sequence key={card.siteUrl} from={20 + i * 20}>
+          frame >= 20 + i * 20 ? (
+            <Sequence key={card.siteUrl} from={20 + i * 20} layout="none">
               <AnimatedCard card={card} />
             </Sequence>
-          )
+          ) : null
         ))}
       </div>
 
       {/* Days counter */}
-      <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, opacity: counterOpacity, fontFamily }}>
-        <span style={{ fontSize: 28, color: COLORS.textMuted, textDecoration: 'line-through' }}>7 days</span>
-        <span style={{ fontSize: 24, color: COLORS.borderLight }}>→</span>
-        <span style={{ fontSize: 52, fontWeight: 900, color: COLORS.purplePrimary }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 16, opacity: counterOpacity, fontFamily, width: 1200 }}>
+        <span style={{ fontSize: 40, color: COLORS.textMuted, textDecoration: 'line-through' }}>7 days</span>
+        <span style={{ fontSize: 36, color: COLORS.borderLight }}>→</span>
+        <span style={{ fontSize: 72, fontWeight: 900, color: COLORS.purplePrimary }}>
           {counterValue} days
         </span>
       </div>
@@ -120,14 +127,14 @@ export const HistoryScene: React.FC = () => {
       <div
         style={{
           position: 'absolute',
-          bottom: 100,
-          left: 160,
-          fontSize: 44,
+          bottom: 80,
+          fontSize: 60,
           fontWeight: 900,
           color: COLORS.purplePrimary,
           fontFamily,
           opacity: overlayOpacity,
-          letterSpacing: -0.5,
+          letterSpacing: -1,
+          textAlign: 'center',
         }}
       >
         Access 2 months of historical reports.

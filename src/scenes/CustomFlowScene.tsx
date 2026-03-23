@@ -18,7 +18,7 @@ export const CustomFlowScene: React.FC = () => {
   const cardY = interpolate(
     spring({ frame, fps, config: { stiffness: 100, damping: 16 } }),
     [0, 1],
-    [80, 0]
+    [100, 0]
   );
 
   const overlayOpacity = interpolate(frame, [200, 230], [0, 1], {
@@ -28,7 +28,13 @@ export const CustomFlowScene: React.FC = () => {
 
   return (
     <AbsoluteFill
-      style={{ background: COLORS.bgApp, alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: 60 }}
+      style={{
+        background: COLORS.bgApp,
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        gap: 64,
+      }}
     >
       <div style={{ transform: `translateY(${cardY}px)` }}>
         <StepperFlow
@@ -41,15 +47,16 @@ export const CustomFlowScene: React.FC = () => {
 
       <div
         style={{
-          fontSize: 52,
+          fontSize: 72,
           fontWeight: 900,
           color: COLORS.purplePrimary,
           fontFamily,
           opacity: overlayOpacity,
-          letterSpacing: -1,
+          letterSpacing: -2,
+          textAlign: 'center',
         }}
       >
-        Behind the login. Finally.
+        Scan behind login pages. Finally.
       </div>
     </AbsoluteFill>
   );

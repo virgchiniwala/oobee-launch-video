@@ -38,20 +38,20 @@ export const OutroScene: React.FC = () => {
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'column',
-        gap: 24,
+        gap: 32,
         fontFamily,
       }}
     >
-      <OobeeLogo width={220} />
+      <OobeeLogo width={320} />
 
-      <div style={{ opacity: titleOpacity, fontSize: 48, fontWeight: 700, color: COLORS.textPrimary }}>
-        v1 is live
+      <div style={{ opacity: titleOpacity, fontSize: 72, fontWeight: 700, color: COLORS.textPrimary, letterSpacing: -1 }}>
+        Oobee Web v1 is live
       </div>
 
       <div
         style={{
-          width: 120,
-          height: 3,
+          width: 200,
+          height: 4,
           background: `linear-gradient(90deg, ${COLORS.purplePrimary}, ${COLORS.purpleDark})`,
           transformOrigin: 'left center',
           transform: `scaleX(${dividerScale})`,
@@ -62,7 +62,7 @@ export const OutroScene: React.FC = () => {
       <div
         style={{
           opacity: ctaOpacity,
-          fontSize: 28,
+          fontSize: 40,
           color: COLORS.purplePrimary,
           fontWeight: 600,
         }}
