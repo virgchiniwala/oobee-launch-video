@@ -3,6 +3,7 @@ import React from 'react';
 import {
   AbsoluteFill,
   interpolate,
+  Sequence,
   spring,
   useCurrentFrame,
   useVideoConfig,
@@ -121,15 +122,17 @@ export const HookScene: React.FC = () => {
 
       {/* Beat 3: Strike-through rows */}
       <div style={{ position: 'absolute', bottom: 160, left: 200, display: 'flex', flexDirection: 'column', gap: 24 }}>
-        {frame >= 120 && (
-          <StrikeThrough before="gov.sg only" after="Scan any domain" strikeStartFrame={0} afterStartFrame={14} fontSize={34} />
-        )}
-        {frame >= 160 && (
-          <StrikeThrough before="7 days of reports" after="2 months of reports" strikeStartFrame={0} afterStartFrame={14} fontSize={34} />
-        )}
-        {frame >= 200 && (
-          <StrikeThrough before="No custom flows" after="Post-login custom flows" strikeStartFrame={0} afterStartFrame={14} fontSize={34} />
-        )}
+        <Sequence from={120}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+            <StrikeThrough before="gov.sg only" after="Scan any domain" strikeStartFrame={0} afterStartFrame={14} fontSize={34} />
+            <Sequence from={40}>
+              <StrikeThrough before="7 days of reports" after="2 months of reports" strikeStartFrame={0} afterStartFrame={14} fontSize={34} />
+            </Sequence>
+            <Sequence from={80}>
+              <StrikeThrough before="No custom flows" after="Post-login custom flows" strikeStartFrame={0} afterStartFrame={14} fontSize={34} />
+            </Sequence>
+          </div>
+        </Sequence>
       </div>
 
       {/* Purple wipe overlay */}

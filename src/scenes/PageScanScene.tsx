@@ -117,7 +117,7 @@ export const PageScanScene: React.FC = () => {
                 style={{ width: 24, height: 24 }}
               />
               <span style={{ fontSize: 20, color: COLORS.purplePrimary, fontWeight: 600 }}>
-                Scanning: Page {scannedPages.toLocaleString()} of 1,000
+                Scanning: Page {scannedPages} of 1,000
               </span>
             </div>
             <ProgressBar progress={progressRatio} height={8} />
