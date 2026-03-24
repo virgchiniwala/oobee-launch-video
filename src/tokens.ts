@@ -24,10 +24,10 @@ export const COLORS = {
 
 export const FRAMES = {
   scene1Start: 0,
-  scene2Start: 210,
-  scene3Start: 450,
-  scene4Start: 660,
-  scene5Start: 870,
-  scene6Start: 1140,
-  total: 1260,
+  scene2Start: 270,   // Hook extended to 270 frames (9s)
+  scene3Start: 480,   // PageScan 210 frames (7s)
+  scene4Start: 690,   // AnyDomain 210 frames (7s)
+  scene5Start: 900,   // History 210 frames (7s)
+  scene6Start: 1170,  // CustomFlow 270 frames (9s)
+  total: 1260,        // Outro 90 frames (3s)
 } as const;

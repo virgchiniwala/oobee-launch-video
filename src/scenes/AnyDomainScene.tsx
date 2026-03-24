@@ -12,7 +12,7 @@ import { COLORS } from '../tokens';
 import { fontFamily } from '../font';
 import { DomainTags } from '../components/DomainTags';
 
-const FULL_URL = 'https://shopee.sg';
+const FULL_URL = 'https://visitsingapore.com';
 
 export const AnyDomainScene: React.FC = () => {
   const frame = useCurrentFrame();

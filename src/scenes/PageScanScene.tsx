@@ -50,12 +50,12 @@ export const PageScanScene: React.FC = () => {
   const progressRatio = scannedPages / 1000;
   const progressVisible = frame >= 100;
 
-  const badgeOpacity = interpolate(frame, [190, 215], [0, 1], {
+  const badgeOpacity = interpolate(frame, [150, 170], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
   const badgeScale = interpolate(
-    spring({ frame: frame - 190, fps, config: { stiffness: 200, damping: 14 } }),
+    spring({ frame: frame - 150, fps, config: { stiffness: 200, damping: 14 } }),
     [0, 1],
     [0.7, 1]
   );

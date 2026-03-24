@@ -38,45 +38,45 @@ export const HookScene: React.FC = () => {
     extrapolateRight: 'clamp',
   });
 
-  // Purple wipe: grow 0→100% (frames 60–70), then slide off right (frames 70–80)
-  const wipeWidth = interpolate(frame, [60, 70], [0, 100], {
+  // Purple wipe: grow 0→100% (frames 60–76), then slide off right (frames 76–92)
+  const wipeWidth = interpolate(frame, [60, 76], [0, 100], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
     easing: (t) => 1 - Math.pow(1 - t, 3),
   });
-  const wipeTranslateX = interpolate(frame, [70, 80], [0, 100], {
+  const wipeTranslateX = interpolate(frame, [76, 92], [0, 100], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
 
   // Beat 2: "100" fades out as wipe passes
-  const hundredExitOpacity = interpolate(frame, [62, 68], [1, 0], {
+  const hundredExitOpacity = interpolate(frame, [62, 74], [1, 0], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
 
   // Beat 2: "1,000" counter rolls in
   const thousandValue = Math.round(
-    interpolate(frame, [70, 120], [100, 1000], {
+    interpolate(frame, [80, 130], [100, 1000], {
       extrapolateLeft: 'clamp',
       extrapolateRight: 'clamp',
     })
   );
-  const thousandOpacity = interpolate(frame, [68, 78], [0, 1], {
+  const thousandOpacity = interpolate(frame, [76, 90], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
 
   // Beat 2: label transition
-  const labelBeforeOpacity = interpolate(frame, [62, 68], [1, 0], {
+  const labelBeforeOpacity = interpolate(frame, [62, 74], [1, 0], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
   });
-  const labelAfterOpacity = interpolate(frame, [68, 78], [0, 1], {
+  const labelAfterOpacity = interpolate(frame, [76, 90], [0, 1], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
   });
 
   // Beat 3: glow on "1,000"
-  const glow = interpolate(frame, [120, 130], [0, 1], {
+  const glow = interpolate(frame, [130, 145], [0, 1], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
   });
 
@@ -124,9 +124,9 @@ export const HookScene: React.FC = () => {
         </div>
       </div>
 
-      {/* Beat 3: Strike-through rows */}
+      {/* Beat 3: Strike-through rows — start at 100, stagger 40 each */}
       <div style={{ position: 'absolute', bottom: 160, left: 200, display: 'flex', flexDirection: 'column', gap: 36 }}>
-        <Sequence from={120} layout="none">
+        <Sequence from={100} layout="none">
           <div style={{ display: 'flex', flexDirection: 'column', gap: 36 }}>
             <StrikeThrough before="gov.sg only" after="Scan any domain" strikeStartFrame={0} afterStartFrame={14} fontSize={52} />
             <Sequence from={40} layout="none">
