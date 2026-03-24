@@ -56,8 +56,8 @@ export const DomainTags: React.FC = () => (
     />
     <Tag
       label=".com, .org, .net & more"
-      bg={COLORS.purple50}
-      textColor={COLORS.purple150}
+      bg={COLORS.green50}
+      textColor={COLORS.green150}
       delayFrames={25}
     />
   </div>
