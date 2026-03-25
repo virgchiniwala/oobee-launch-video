@@ -3,6 +3,8 @@ import React from 'react';
 import { Composition, Still } from 'remotion';
 import { OobeeWebLaunch } from './compositions/OobeeWebLaunch';
 import { OobeeWebLaunchMusic } from './compositions/OobeeWebLaunchMusic';
+import { OobeeWebLaunchV2 } from './compositions/OobeeWebLaunchV2';
+import { OobeeWebLaunchMusicV2 } from './compositions/OobeeWebLaunchMusicV2';
 import { AnnouncementCard } from './stills/AnnouncementCard';
 import { UpgradesCard } from './stills/UpgradesCard';
 import { FRAMES } from './tokens';
@@ -21,6 +23,22 @@ export const RemotionRoot: React.FC = () => (
     <Composition
       id="OobeeWebLaunchMusic"
       component={OobeeWebLaunchMusic}
+      durationInFrames={FRAMES.total}
+      fps={30}
+      width={1920}
+      height={1080}
+    />
+    <Composition
+      id="OobeeWebLaunchSilentV2"
+      component={OobeeWebLaunchV2}
+      durationInFrames={FRAMES.total}
+      fps={30}
+      width={1920}
+      height={1080}
+    />
+    <Composition
+      id="OobeeWebLaunchMusicV2"
+      component={OobeeWebLaunchMusicV2}
       durationInFrames={FRAMES.total}
       fps={30}
       width={1920}

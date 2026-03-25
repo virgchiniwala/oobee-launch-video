@@ -27,7 +27,7 @@ const UpgradeCell: React.FC<UpgradeProps> = ({ before, after, label }) => (
     {/* Before */}
     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
       <div style={{ position: 'relative', display: 'inline-block' }}>
-        <span style={{ fontSize: 26, color: COLORS.textDisabled, fontFamily, fontWeight: 600 }}>{before}</span>
+        <span style={{ fontSize: 26, color: COLORS.textSecondary, fontFamily, fontWeight: 600 }}>{before}</span>
         <div style={{
           position: 'absolute', top: '50%', left: 0,
           width: '100%', height: 2.5,
@@ -38,7 +38,7 @@ const UpgradeCell: React.FC<UpgradeProps> = ({ before, after, label }) => (
     </div>
     {/* Arrow + after */}
     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-      <span style={{ fontSize: 20, color: COLORS.borderLight }}>→</span>
+      <span style={{ fontSize: 24, color: COLORS.purplePrimary, fontWeight: 700 }}>→</span>
       <span style={{ fontSize: 30, fontWeight: 900, color: COLORS.purplePrimary, fontFamily }}>
         {after}
       </span>
@@ -50,14 +50,14 @@ export const UpgradesCard: React.FC = () => (
   <AbsoluteFill style={{ background: COLORS.bgApp, fontFamily }}>
     {/* Top purple accent bar */}
     <div style={{
-      position: 'absolute', top: 0, left: 0, right: 0, height: 8,
+      position: 'absolute', top: 0, left: 0, right: 0, height: 14,
       background: `linear-gradient(90deg, ${COLORS.purplePrimary}, ${COLORS.purpleDark})`,
     }} />
 
     <div style={{
       position: 'absolute', inset: 0,
-      padding: '52px 72px',
-      display: 'flex', flexDirection: 'column', gap: 36,
+      padding: '48px 72px',
+      display: 'flex', flexDirection: 'column', gap: 24,
     }}>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -69,7 +69,9 @@ export const UpgradesCard: React.FC = () => (
             What's new in v1
           </div>
         </div>
-        <Img src={staticFile('logo-oobee-full-colour-FPA-110x40.svg')} style={{ height: 44 }} />
+        <div style={{ overflow: 'hidden', height: 44, display: 'flex', alignItems: 'flex-start' }}>
+          <Img src={staticFile('logo-oobee-full-colour-FPA-110x40.svg')} style={{ width: 160 }} />
+        </div>
       </div>
 
       {/* 2×2 upgrade grid */}
@@ -84,9 +86,15 @@ export const UpgradesCard: React.FC = () => (
 
       {/* Footer CTA */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end' }}>
-        <span style={{ fontSize: 22, color: COLORS.purplePrimary, fontWeight: 600 }}>
-          app.oobee.tech.gov.sg
-        </span>
+        <div style={{
+          display: 'inline-flex', alignItems: 'center',
+          background: COLORS.purplePrimary, borderRadius: 999,
+          padding: '12px 32px',
+        }}>
+          <span style={{ fontSize: 22, color: '#fff', fontWeight: 700, fontFamily }}>
+            Try it → app.oobee.tech.gov.sg
+          </span>
+        </div>
       </div>
     </div>
   </AbsoluteFill>
