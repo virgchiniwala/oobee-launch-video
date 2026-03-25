@@ -33,26 +33,15 @@ export const AnnouncementCard: React.FC = () => (
       backgroundSize: '32px 32px',
     }} />
 
-    {/* Right side decorative number */}
-    <div style={{
-      position: 'absolute', right: -20, top: '50%',
-      transform: 'translateY(-50%)',
-      fontSize: 320, fontWeight: 900, color: 'rgba(255,255,255,0.06)',
-      letterSpacing: -12, lineHeight: 1, userSelect: 'none',
-      fontFamily,
-    }}>
-      1,000
-    </div>
-
     {/* Content */}
     <div style={{
       position: 'absolute', inset: 0,
       padding: '56px 80px',
       display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
     }}>
-      {/* Top: Logo */}
-      <div>
-        <Img src={staticFile('logo-oobee-full-colour-FPA-110x40.svg')} style={{ height: 52, filter: 'brightness(0) invert(1)' }} />
+      {/* Top: Logo — clipped to hide subtitle */}
+      <div style={{ overflow: 'hidden', height: 52, display: 'flex', alignItems: 'flex-start' }}>
+        <Img src={staticFile('logo-oobee-full-colour-FPA-110x40.svg')} style={{ width: 180, filter: 'brightness(0) invert(1)' }} />
       </div>
 
       {/* Middle: Headline */}
@@ -69,7 +58,7 @@ export const AnnouncementCard: React.FC = () => (
           <Feature text="1,000 pages per scan (10× more than Beta)" />
           <Feature text="Scan any domain — .gov.sg, .com, .org & more" />
           <Feature text="2 months of report history" />
-          <Feature text="Post-login custom flow scans" />
+          <Feature text="Post-login custom flows" />
         </div>
       </div>
 
@@ -77,9 +66,9 @@ export const AnnouncementCard: React.FC = () => (
       <div style={{
         display: 'inline-flex', alignItems: 'center', gap: 10,
         background: '#fff', borderRadius: 999,
-        padding: '14px 32px', alignSelf: 'flex-start',
+        padding: '18px 44px', alignSelf: 'flex-start',
       }}>
-        <span style={{ fontSize: 24, fontWeight: 700, color: COLORS.purplePrimary }}>
+        <span style={{ fontSize: 28, fontWeight: 700, color: COLORS.purplePrimary }}>
           Try it → app.oobee.tech.gov.sg
         </span>
       </div>
