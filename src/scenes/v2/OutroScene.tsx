@@ -38,13 +38,14 @@ export const OutroSceneV2: React.FC = () => {
   return (
     <AbsoluteFill style={{
       background: COLORS.bgCard,
+      fontFamily,
+      display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      flexDirection: 'column',
-      gap: 36,
-      fontFamily,
+      gap: 32,
     }}>
-      {/* Logo — clipped to hide subtitle */}
+      {/* Logo */}
       <div style={{
         overflow: 'hidden',
         height: 88,
@@ -59,18 +60,21 @@ export const OutroSceneV2: React.FC = () => {
         />
       </div>
 
+      {/* Headline */}
       <div style={{
         opacity: titleOpacity,
-        fontSize: 80,
+        fontSize: 96,
         fontWeight: 700,
         color: COLORS.textPrimary,
-        letterSpacing: -1,
+        letterSpacing: -2,
+        lineHeight: 1,
       }}>
-        Oobee Web v1 is live
+        Try A Scan Now
       </div>
 
+      {/* Divider */}
       <div style={{
-        width: 320,
+        width: 360,
         height: 4,
         background: `linear-gradient(90deg, ${COLORS.purplePrimary}, ${COLORS.purpleDark})`,
         transformOrigin: 'center center',
@@ -78,13 +82,25 @@ export const OutroSceneV2: React.FC = () => {
         borderRadius: 2,
       }} />
 
+      {/* QR + URL row */}
       <div style={{
         opacity: ctaOpacity,
-        fontSize: 44,
-        color: COLORS.purplePrimary,
-        fontWeight: 700,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 48,
       }}>
-        Try it → app.oobee.tech.gov.sg
+        <Img
+          src={staticFile('qr-oobee-web.svg')}
+          style={{ width: 320, height: 320 }}
+        />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <span style={{ fontSize: 30, color: COLORS.textMuted, fontWeight: 500 }}>
+            Scan the QR or visit
+          </span>
+          <span style={{ fontSize: 52, color: COLORS.purplePrimary, fontWeight: 700 }}>
+            app.oobee.tech.gov.sg
+          </span>
+        </div>
       </div>
     </AbsoluteFill>
   );

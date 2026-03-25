@@ -97,7 +97,7 @@ export const HookSceneV2: React.FC = () => {
             Beta — pages per scan
           </div>
           <div style={{ position: 'absolute', left: '50%', transform: 'translateX(-50%)', whiteSpace: 'nowrap', opacity: labelAfterOpacity, fontFamily, fontSize: 32, color: COLORS.purplePrimary, letterSpacing: 4, textTransform: 'uppercase', fontWeight: 700 }}>
-            V1 — pages per scan
+            Now — pages per scan
           </div>
         </div>
 
