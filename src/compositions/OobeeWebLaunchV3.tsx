@@ -1,13 +1,21 @@
-// src/compositions/OobeeWebLaunchV2.tsx
+// src/compositions/OobeeWebLaunchV3.tsx
 import React from 'react';
 import { AbsoluteFill, interpolate, Sequence, useCurrentFrame } from 'remotion';
-import { FRAMES } from '../tokens';
-import { HookSceneV2 } from '../scenes/v2/HookScene';
+import { HookSceneV3 } from '../scenes/v3/HookScene';
 import { PageScanSceneV2 } from '../scenes/v2/PageScanScene';
 import { AnyDomainSceneV2 } from '../scenes/v2/AnyDomainScene';
 import { HistorySceneV2 } from '../scenes/v2/HistoryScene';
-import { CustomFlowSceneV2 } from '../scenes/v2/CustomFlowScene';
 import { OutroSceneV2 } from '../scenes/v2/OutroScene';
+
+// V3 drops the custom flow scene: 270 + 210 + 210 + 210 + 90 = 990 frames (33s)
+export const FRAMES_V3 = {
+  scene1Start: 0,
+  scene2Start: 270,
+  scene3Start: 480,
+  scene4Start: 690,
+  scene5Start: 900,
+  total: 990,
+} as const;
 
 const FADE = 10;
 
@@ -22,27 +30,23 @@ const wrap = (Scene: React.FC) => () => <FadeIn><Scene /></FadeIn>;
 const PageScanFaded = wrap(PageScanSceneV2);
 const AnyDomainFaded = wrap(AnyDomainSceneV2);
 const HistoryFaded = wrap(HistorySceneV2);
-const CustomFlowFaded = wrap(CustomFlowSceneV2);
 const OutroFaded = wrap(OutroSceneV2);
 
-export const OobeeWebLaunchV2: React.FC = () => (
+export const OobeeWebLaunchV3: React.FC = () => (
   <AbsoluteFill>
-    <Sequence from={FRAMES.scene1Start} durationInFrames={FRAMES.scene2Start - FRAMES.scene1Start}>
-      <HookSceneV2 />
+    <Sequence from={FRAMES_V3.scene1Start} durationInFrames={FRAMES_V3.scene2Start - FRAMES_V3.scene1Start}>
+      <HookSceneV3 />
     </Sequence>
-    <Sequence from={FRAMES.scene2Start} durationInFrames={FRAMES.scene3Start - FRAMES.scene2Start}>
+    <Sequence from={FRAMES_V3.scene2Start} durationInFrames={FRAMES_V3.scene3Start - FRAMES_V3.scene2Start}>
       <PageScanFaded />
     </Sequence>
-    <Sequence from={FRAMES.scene3Start} durationInFrames={FRAMES.scene4Start - FRAMES.scene3Start}>
+    <Sequence from={FRAMES_V3.scene3Start} durationInFrames={FRAMES_V3.scene4Start - FRAMES_V3.scene3Start}>
       <AnyDomainFaded />
     </Sequence>
-    <Sequence from={FRAMES.scene4Start} durationInFrames={FRAMES.scene5Start - FRAMES.scene4Start}>
+    <Sequence from={FRAMES_V3.scene4Start} durationInFrames={FRAMES_V3.scene5Start - FRAMES_V3.scene4Start}>
       <HistoryFaded />
     </Sequence>
-    <Sequence from={FRAMES.scene5Start} durationInFrames={FRAMES.scene6Start - FRAMES.scene5Start}>
-      <CustomFlowFaded />
-    </Sequence>
-    <Sequence from={FRAMES.scene6Start} durationInFrames={FRAMES.total - FRAMES.scene6Start}>
+    <Sequence from={FRAMES_V3.scene5Start} durationInFrames={FRAMES_V3.total - FRAMES_V3.scene5Start}>
       <OutroFaded />
     </Sequence>
   </AbsoluteFill>
